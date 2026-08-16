@@ -166,16 +166,17 @@ df.loc[habitableOnesV.index, "map"] = "Habitable Candidate Planet"
 df.loc[habitableOnes.index, "map"] = "Habitable Confirmed Planet"
 df["displayname"] = df["kepler_name"].fillna(df["kepoi_name"])
 
-df.loc["earth", "x"] = 0
-df.loc["earth", "y"] = 0
-df.loc["earth", "z"] = 0
-df.loc["earth", "koi_period"] = 365.25
-df.loc["earth", "koi_prad"] = 1
-df.loc["earth", "koi_insol"] = 1
-df.loc["earth", "koi_steff"] = 5778
-df.loc["earth", "distance"] = 0
-df.loc["earth", "displayname"] = "Earth"
-df.loc["earth", "map"] = "Earth"
+earth_data = {
+    "x": 0.0, "y": 0.0, "z": 0.0,
+    "koi_period": 365.25,
+    "koi_prad": 1.0,
+    "koi_insol": 1.0,
+    "koi_steff": 5778.0,
+    "distance": 0.0,
+    "displayname": "Earth",
+    "map": "Earth"
+}
+df = pd.concat([df, pd.DataFrame([earth_data])], ignore_index=True)
 
 
 import plotly.express as pl
