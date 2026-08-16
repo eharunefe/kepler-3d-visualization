@@ -181,6 +181,14 @@ df = pd.concat([df, pd.DataFrame([earth_data])], ignore_index=True)
 
 import plotly.express as pl
 
+priorityMap = {"FALSE POSITIVE": 1,
+    "CANDIDATE": 2,
+    "CONFIRMED": 3,
+    "Habitable Candidate Planet": 4,
+    "Habitable Confirmed Planet": 5,
+    "Earth": 6
+}
+
 fig = pl.scatter_3d(
     df,
     x = "x",
@@ -195,6 +203,7 @@ fig = pl.scatter_3d(
         "Habitable Candidate Planet": "#b3ff00",
         "Earth": "#ffffff",
     },
+    category_orders={"map": priorityMap},
     hover_name = "displayname",
     hover_data = {
         "x" : False,
@@ -216,6 +225,7 @@ fig = pl.scatter_3d(
     title = "Kepler Objects of Interest Visualization - 3D Map for Habitable and Possible Planets",
     opacity = 0.8
 )
+
 
 fig.update_traces(marker=dict(size=2.3))
 fig.update_layout(
